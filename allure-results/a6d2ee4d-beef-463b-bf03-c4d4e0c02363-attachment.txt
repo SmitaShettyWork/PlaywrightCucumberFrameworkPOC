@@ -1,0 +1,13 @@
+Error:  TypeError: Cannot read properties of undefined (reading 'page')
+    at C:\Users\10821339\Downloads\playwrighttest\tests\UIbasicsPOM.spec.js:15:12
+    at C:\Users\10821339\Downloads\playwrighttest\node_modules\playwright\lib\worker\workerMain.js:338:15
+    at C:\Users\10821339\Downloads\playwrighttest\node_modules\playwright\lib\worker\testInfo.js:285:17
+    at TimeoutManager.withRunnable (C:\Users\10821339\Downloads\playwrighttest\node_modules\playwright\lib\worker\timeoutManager.js:64:34)
+    at TestInfoImpl._runAsStage (C:\Users\10821339\Downloads\playwrighttest\node_modules\playwright\lib\worker\testInfo.js:283:34)
+    at C:\Users\10821339\Downloads\playwrighttest\node_modules\playwright\lib\worker\workerMain.js:330:22
+    at C:\Users\10821339\Downloads\playwrighttest\node_modules\playwright\lib\worker\testInfo.js:285:11
+    at TimeoutManager.withRunnable (C:\Users\10821339\Downloads\playwrighttest\node_modules\playwright\lib\worker\timeoutManager.js:52:27)
+    at TestInfoImpl._runAsStage (C:\Users\10821339\Downloads\playwrighttest\node_modules\playwright\lib\worker\testInfo.js:283:7)
+    at WorkerMain._runTest (C:\Users\10821339\Downloads\playwrighttest\node_modules\playwright\lib\worker\workerMain.js:280:5)
+    at WorkerMain.runTestGroup (C:\Users\10821339\Downloads\playwrighttest\node_modules\playwright\lib\worker\workerMain.js:204:11)
+    at process.<anonymous> (C:\Users\10821339\Downloads\playwrighttest\node_modules\playwright\lib\common\process.js:95:22)

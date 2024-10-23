@@ -1,0 +1,2 @@
+Navigated to the url: https://www.google.com/
+Succesfully clicked on the signin button

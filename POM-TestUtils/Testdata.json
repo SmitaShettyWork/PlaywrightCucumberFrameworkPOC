@@ -1,0 +1,19 @@
+[
+    {
+    "url" : "https://www.google.com/",
+    "SearchContent" : "Playwright",
+    "searchpageName" : "Playwright: Fast and reliable",
+    "contentToSearch" : "locator"
+    },
+
+    {
+    "url" : "https://www.google.com/",
+    "SearchContent" : "Playwright",
+    "searchpageName" : "Playwright: Fast and reliable",
+    "contentToSearch" : "Reporter"
+
+    }
+
+
+]
+
