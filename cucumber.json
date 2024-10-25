@@ -1,0 +1,11 @@
+{
+    "default": {
+      "format": [
+        "junit:./test-results/reports/cucumber_report.xml",
+        "html:./test-results/reports/cucumber_report.html"
+      ],
+      "retry": 2,
+      "retryTagFilter": "@flaky"
+    }
+  }
+  

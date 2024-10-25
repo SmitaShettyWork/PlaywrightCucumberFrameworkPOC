@@ -10,7 +10,8 @@
   "devDependencies": {
     "@playwright/test": "^1.48.0",
     "@types/node": "^22.7.5",
-    "allure-playwright": "^3.0.5"
+    "allure-playwright": "^3.0.5",
+    "cucumber-html-reporter": "^7.2.0"
   },
   "dependencies": {
     "@cucumber/cucumber": "^11.0.1",
