@@ -3,18 +3,25 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+     "test": "npx cucumber-js || exit 0",
+     "posttest": "node ReportGenerator.js",
+     "test:failed":"cucumber-js @rerun.txt"
+  },
   "keywords": [],
   "author": "Smita Shetty",
   "license": "ISC",
   "devDependencies": {
+    "@cucumber/cucumber": "^11.0.1",
+    "@cucumber/messages": "^27.0.0",
     "@playwright/test": "^1.48.0",
     "@types/node": "^22.7.5",
+    "allure-cucumberjs": "^3.0.5",
     "allure-playwright": "^3.0.5",
-    "cucumber-html-reporter": "^7.2.0"
+    "cucumber-html-reporter": "^7.2.0",
+    "multiple-cucumber-html-reporter": "^3.8.0"
   },
   "dependencies": {
-    "@cucumber/cucumber": "^11.0.1",
     "exceljs": "^4.4.0"
   }
 }

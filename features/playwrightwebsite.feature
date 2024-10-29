@@ -4,7 +4,7 @@ Background:
    Given a "https://www.google.com/" to launch the google website
    When searched for "playwright" keyword in the google search
 Scenario: Launch the browser and search for playwright
-   Then verify the searchresult page with the title "playwright - Google Search"
+   Then verify the searchresult page with the title "Playwright - Google Search"
 
 Scenario Outline: Click on the playwright link and search in the doc
 Given a user searched the playwright in google

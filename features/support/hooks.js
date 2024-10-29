@@ -1,13 +1,24 @@
 const {POMmanager}=require('../../POM-Manager/POMmanager');
 const playwright= require('@playwright/test');
-const reporter = require('cucumber-html-reporter');
+const { chromium, firefox, webkit } = require('playwright');
+const reporter = require('multiple-cucumber-html-reporter');
 const {After, Before, Status,AfterStep, BeforeStep,AfterAll }= require('@cucumber/cucumber');
 const { type } = require('os');
+const path = require('path');
+const fs = require('fs');
 
+// Function to generate date and timestamp
+function getDateTime() {
+   const now = new Date();
+   const date = now.toISOString().split('T')[0]; // YYYY-MM-DD
+   const time = now.toTimeString().split(' ')[0].replace(/:/g, '-'); // HH-MM-SS
+   return `${date}_${time}`;
+ }
 
 Before(async function ({pickle}) {
-   this.browser = await playwright.chromium.launch({
-      headless: false
+   const browserType = process.env.BROWSER || 'chromium'; // Default to Chromium if no browser is specified
+   this.browser = await { chromium, firefox, webkit }[browserType].launch({
+     headless: false
     });
   
     this.context = await this.browser.newContext({
@@ -24,40 +35,31 @@ Before(async function ({pickle}) {
 
   After(async function ({pickle}) {
 
-    await this.context.tracing.stop({ path: `./test-results/traces/${pickle.name}.zip`, type:"zip" });
+    const dateTime = getDateTime();
+    await this.context.tracing.stop({ path: `./test-results/traces/${pickle.name}_${dateTime}.zip`, type:"zip" });
     await this.context.close();
     await this.browser.close();
+
+  
+  // Access the video file path from the page object
+  const videoPath = await this.page.video().path();
+  const newVideoPath = path.join('./test-results/videos/', `${pickle.name}_${dateTime}.mp4`);
+
+ // Rename the video file
+ fs.rename(videoPath, newVideoPath, (err) => {
+   if (err) throw err;
+   console.log('Video file renamed successfully!');
+ });
+    
     console.log("Here the browser is closed succesfully")
     
   })
 
   AfterStep( async function ({result,pickle}) {
-  
-    if (result.status === Status.PASSED) 
+   const dateTime = getDateTime();
+    if (result.status === Status.FAILED) 
      {
-       const img= await this.page.screenshot({path: `./test-results/screenshots/${pickle.name}.png`, type:"png"}); // we are getting the screenshot here
+       const img= await this.page.screenshot({path: `./test-results/screenshots/${pickle.name}_${dateTime}.png`, type:"png"}); // we are getting the screenshot here
        await this.attach(img,"image/png");
      }
-
-
-   AfterAll(async function () {
-      const options = {
-        theme: 'bootstrap',
-        jsonFile: './test-results/reports/cucumber_report.json',
-        output: './test-results/reports/cucumber_report.html',
-        reportSuiteAsScenarios: true,
-        launchReport: true,
-        metadata: {
-          "App Version": "0.3.2",
-          "Test Environment": "STAGING",
-          "Browser": "Chrome  54.0.2840.98",
-          "Platform": "Windows 10",
-          "Parallel": "Scenarios",
-          "Executed": "Remote"
-        }
-      }
-      reporter.generate(options);
-});
-
-
-});
+    });
